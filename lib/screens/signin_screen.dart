@@ -97,6 +97,12 @@ class _SigninScreenState extends State<SigninScreen> {
                   hintStyle: Styles.hintTextStyle,
                 ),
               ),
+              SizedBox(height: 15,),
+              Consumer<ContactProvider>(
+                  builder: (context, loginProvider, child) {
+                  return Text(loginProvider.resMessage.isEmpty? "" : loginProvider.resMessage);
+                }
+              ),
               const SizedBox(height: 35),
               Center(
                 child: SizedBox(

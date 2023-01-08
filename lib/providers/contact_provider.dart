@@ -132,12 +132,19 @@ class ContactProvider extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         isSent = true;
+        _isLoadingLogin = false;
+        notifyListeners();
 
         _userData = loginModelFromJson(response.body);
         getContacts();
         notifyListeners();
 
         return jsonDecode(response.body);
+      }else{
+        final decodedResponse = json.decode(response.body);
+        _resMessage = decodedResponse['msg'];
+        _isLoadingLogin = false;
+        notifyListeners();
       }
       _isLoadingLogin = false;
       notifyListeners();
