@@ -12,6 +12,9 @@ class ContactProvider extends ChangeNotifier {
 
   bool _isLoadingCreate = false;
 
+  String _resMessage = "";
+  String get resMessage => _resMessage;
+
   bool get isLoadingCreate => _isLoadingCreate;
 
   bool _isLoadingLogin = false;
@@ -84,6 +87,16 @@ class ContactProvider extends ChangeNotifier {
           const SnackBar(
             backgroundColor: Colors.black,
             content: Text('Saved successfully!'),
+          ),
+        );
+      }else if(response.statusCode == 400){
+        final decodedResponse = jsonDecode(response.body);
+        _isLoadingCreate = false;
+        notifyListeners();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.black,
+            content: Text(decodedResponse['msg']),
           ),
         );
       }
