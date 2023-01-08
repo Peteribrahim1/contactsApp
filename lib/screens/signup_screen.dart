@@ -49,9 +49,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 style: Styles.fieldTextStyle,
               ),
               const SizedBox(height: 5),
-              TextField(
+              TextFormField(
                 maxLength: 25,
                 controller: _nameController,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value){
+                  if(value.toString().length < 4){
+                    return "Name cannot be less than 4 characters";
+                  } else{
+                    return null;
+                  }
+
+                },
                 decoration: InputDecoration(
                   filled: true,
                   counterText: "",
@@ -105,10 +114,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 style: Styles.fieldTextStyle,
               ),
               const SizedBox(height: 5),
-              TextField(
+              TextFormField(
                 controller: _passwordController,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value){
+                  if(value.toString().length < 6){
+                    return "Password cannot be less than 6 characters";
+                  }else if(!hasNumber(value!)){
+                    return "Password must contain number";
+                  } else{
+                    return null;
+                  }
+
+                },
+
                 decoration: InputDecoration(
                   filled: true,
+
                   fillColor: Colors.white,
                   prefixIcon: const Icon(
                     Icons.password,
@@ -123,6 +145,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     borderSide: const BorderSide(
                         color: Color.fromRGBO(20, 10, 38, 1), width: 1),
                   ),
+
                   hintStyle: Styles.hintTextStyle,
                 ),
               ),
@@ -211,4 +234,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+}
+
+bool hasNumber(String value) {
+  String pattern = r'[0-9]';
+  RegExp regExp = RegExp(pattern);
+  return regExp.hasMatch(value);
 }
