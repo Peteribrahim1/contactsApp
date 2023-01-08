@@ -244,7 +244,7 @@ class ContactProvider extends ChangeNotifier {
   // Edit contact
   Future<bool> editContact(BuildContext context, String name, String email,
       int phone, String type, String id) async {
-    _isLoadingAdd = true;
+    _isLoadingEdit = true;
     print(_userData?.token);
     notifyListeners();
 
@@ -278,10 +278,10 @@ class ContactProvider extends ChangeNotifier {
           ),
         );
 
-        _isLoadingAdd = false;
+        _isLoadingEdit = false;
         notifyListeners();
       }
-      _isLoadingAdd = false;
+      _isLoadingEdit = false;
       notifyListeners();
     } catch (e) {
       debugPrint('error');
