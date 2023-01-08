@@ -100,7 +100,9 @@ class _SigninScreenState extends State<SigninScreen> {
               SizedBox(height: 15,),
               Consumer<ContactProvider>(
                   builder: (context, loginProvider, child) {
-                  return Text(loginProvider.resMessage.isEmpty? "" : loginProvider.resMessage);
+                  return Text(loginProvider.resMessage.isEmpty? "" : loginProvider.resMessage, style: TextStyle(
+                    color: Colors.red,
+                  ),);
                 }
               ),
               const SizedBox(height: 35),
