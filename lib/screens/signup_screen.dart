@@ -115,6 +115,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               const SizedBox(height: 5),
               TextFormField(
+                obscureText: true,
                 controller: _passwordController,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value){

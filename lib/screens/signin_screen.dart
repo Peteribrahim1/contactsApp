@@ -82,11 +82,12 @@ class _SigninScreenState extends State<SigninScreen> {
               }),
               const SizedBox(height: 15),
               const Text(
-                'Create Password',
+                'Enter Password',
                 style: Styles.fieldTextStyle,
               ),
               const SizedBox(height: 5),
               TextField(
+                obscureText: true,
                 controller: _passwordController,
                 decoration: InputDecoration(
                   filled: true,
