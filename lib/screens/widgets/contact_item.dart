@@ -78,7 +78,7 @@ class _ContactItemState extends State<ContactItem> {
                               deleteProvider.selectedContact!.id!);
                         },
                         child: deleteProvider.isLoadingDelete && deleteProvider.selectedContact == widget.contactValues
-                            ? Center(
+                            ? const Center(
                                 child: CircularProgressIndicator(),
                               )
                             : Icon(Icons.delete_outline));

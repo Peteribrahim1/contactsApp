@@ -70,6 +70,16 @@ class _SigninScreenState extends State<SigninScreen> {
                   hintStyle: Styles.hintTextStyle,
                 ),
               ),
+              //  SizedBox(height: 15,),
+              Consumer<ContactProvider>(builder: (context, inProvider, child) {
+                  return Text(
+                    inProvider.resMessage.isEmpty ? "" : inProvider.resMessage,
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  );
+
+              }),
               const SizedBox(height: 15),
               const Text(
                 'Create Password',
@@ -97,14 +107,20 @@ class _SigninScreenState extends State<SigninScreen> {
                   hintStyle: Styles.hintTextStyle,
                 ),
               ),
-              SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Consumer<ContactProvider>(
                   builder: (context, loginProvider, child) {
-                  return Text(loginProvider.resMessage.isEmpty? "" : loginProvider.resMessage, style: TextStyle(
+                return Text(
+                  loginProvider.resMessage.isEmpty
+                      ? ""
+                      : loginProvider.resMessage,
+                  style: const TextStyle(
                     color: Colors.red,
-                  ),);
-                }
-              ),
+                  ),
+                );
+              }),
               const SizedBox(height: 35),
               Center(
                 child: SizedBox(
@@ -114,14 +130,13 @@ class _SigninScreenState extends State<SigninScreen> {
                       builder: (context, loginProvider, child) {
                     return ElevatedButton(
                       onPressed: () async {
-
                         if (_emailController.text.isNotEmpty &&
                             _passwordController.text.isNotEmpty) {
                           var data = await loginProvider.loginUser(
                               _emailController.text, _passwordController.text);
                           print(data['msg']);
 
-                          if(loginProvider.userData?.msg == "User logged in"){
+                          if (loginProvider.userData?.msg == "User logged in") {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -134,14 +149,15 @@ class _SigninScreenState extends State<SigninScreen> {
                                 content: Text(data['msg']),
                               ),
                             );
-                          }else if(loginProvider.userData?.msg == "Email does not exist"){
+                          } else if (loginProvider.userData?.msg ==
+                              "Email does not exist") {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 backgroundColor: Colors.black,
                                 content: Text(data['msg']),
                               ),
                             );
-                          }else{
+                          } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 backgroundColor: Colors.black,
@@ -149,7 +165,6 @@ class _SigninScreenState extends State<SigninScreen> {
                               ),
                             );
                           }
-
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -170,15 +185,16 @@ class _SigninScreenState extends State<SigninScreen> {
                           ),
                         ),
                       ),
-                      child: loginProvider.isLoadingLogin ? const Center(
-                        child: CircularProgressIndicator(
-                          color: Colors.white,
-                        ),
-                      )
+                      child: loginProvider.isLoadingLogin
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            )
                           : const Text(
-                        'login',
-                        style: Styles.buttonTextStyle,
-                      ),
+                              'login',
+                              style: Styles.buttonTextStyle,
+                            ),
                     );
                   }),
                 ),
@@ -208,5 +224,3 @@ class _SigninScreenState extends State<SigninScreen> {
     );
   }
 }
-
-

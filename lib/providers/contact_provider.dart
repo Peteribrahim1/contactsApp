@@ -86,7 +86,7 @@ class ContactProvider extends ChangeNotifier {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             backgroundColor: Colors.black,
-            content: Text('Saved successfully!'),
+            content: Text('Account created successfully!'),
           ),
         );
       }else if(response.statusCode == 400){

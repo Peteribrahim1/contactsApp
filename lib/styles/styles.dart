@@ -24,12 +24,6 @@ class Styles {
     color: Color.fromRGBO(0, 0, 51, 1),
   );
 
-
-
-
-
-
-
   static const appBarTextStyle = TextStyle(
     fontFamily: 'Raleway',
     fontSize: 16,
@@ -92,8 +86,6 @@ class Styles {
     fontWeight: FontWeight.w800,
     color: Color.fromRGBO(0, 0, 51, 1),
   );
-
-
 
   static const splashStyle = TextStyle(
     fontFamily: 'Raleway',

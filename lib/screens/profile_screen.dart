@@ -5,7 +5,6 @@ import 'package:test_app/providers/contact_provider.dart';
 import 'package:test_app/screens/add_contact_screen.dart';
 import 'package:test_app/screens/widgets/contact_item.dart';
 
-import '../models/contact_model.dart';
 import '../styles/styles.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -20,12 +19,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   String token = '';
 
-  // @override
-  // Future<void> initState() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //  username = prefs.getString('username')!;
-  //   super.initState();
-  // }
   @override
   void initState() {
     super.initState();
