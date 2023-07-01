@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_app/providers/contact_provider.dart';
 import 'package:test_app/screens/signin_screen.dart';
-import 'package:test_app/screens/signup_screen.dart';
+
 
 void main() {
   runApp(MultiProvider(
@@ -23,8 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'testApp',
       initialRoute: '/',
       routes: {
-        '/': (ctx) => SigninScreen(),
-       // RoleScreen.routeName: (ctx) => RoleScreen(),
+        '/': (ctx) => const SigninScreen(),
       },
     );
   }

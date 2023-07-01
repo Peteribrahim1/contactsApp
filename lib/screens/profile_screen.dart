@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_app/providers/contact_provider.dart';
 import 'package:test_app/screens/add_contact_screen.dart';
-import 'package:test_app/screens/widgets/contact_item.dart';
 
 import '../styles/styles.dart';
+import '../widgets/contact_item.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -27,8 +27,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void getToken() async {
-    var prefs = await _prefs ;
-    token = prefs.getString('token')??'';
+    var prefs = await _prefs;
+    token = prefs.getString('token') ?? '';
   }
 
   @override
@@ -58,37 +58,49 @@ class _ProfileScreenState extends State<ProfileScreen> {
         padding: EdgeInsets.all(20),
         child: Consumer<ContactProvider>(
             builder: (context, contactProvider, child) {
-            return contactProvider.isLoadingFetch
-                ? const Center(
-              child: CircularProgressIndicator(),
-            )
-                : Column(
-              children: [
-                SizedBox(height: 15),
-                Text(
-                  loginProvider.userData?.user?.name??"No Name",
-                  style: Styles.nameTextStyle,
-                ),
-                SizedBox(height: 20),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemCount: getContactsProvider.contacts?.length,
-                  itemBuilder: (context, index) {
-                    final contact = getContactsProvider.contacts?[index];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: ContactItem(
-                        contactValues: contact!,
+          return contactProvider.isLoadingFetch
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.purple,
+                  ),
+                )
+              : Column(
+                  children: [
+                    SizedBox(height: 15),
+                    Center(
+                      child: Text(
+                        loginProvider.userData?.user?.name ?? "No Name",
+                        style: Styles.dashTextStyle,
                       ),
-                    );
-                  },
-                ),
-              ],
-            );
-          }
-        ),
+                    ),
+                    SizedBox(height: 20),
+                    loginProvider.contactsDisplay!.isEmpty
+                        ? const Center(
+                            child: Text(
+                              'You have no contacts yet. Click the plus icon at the down right part of your screen to add contacts.',
+                              style: Styles.fieldTextStyle,
+                            ),
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            itemCount: getContactsProvider.contacts?.length,
+                            itemBuilder: (context, index) {
+                              final contact =
+                                  getContactsProvider.contacts?[index];
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: ContactItem(
+                                  contactValues: contact!,
+                                ),
+                              );
+                            },
+                          ),
+                  ],
+                );
+        }),
       ),
     );
   }

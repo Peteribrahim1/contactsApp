@@ -138,8 +138,10 @@ class _EditContactScreenState extends State<EditContactScreen> {
                       ),
                     ),
                     child: editContactProvider.isLoadingEdit
-                        ? Center(
-                            child: CircularProgressIndicator(),
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
                           )
                         : const Text(
                             'Update contact',

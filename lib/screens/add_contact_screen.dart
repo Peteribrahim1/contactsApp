@@ -85,19 +85,19 @@ class _AddContactScreenState extends State<AddContactScreen> {
                 child: Consumer<ContactProvider>(
                     builder: (context, addContactProvider, child) {
                   return ElevatedButton(
-                    onPressed: () async{
+                    onPressed: () async {
                       if (_nameController.text.isNotEmpty &&
                           _emailController.text.isNotEmpty &&
                           _typeController.text.isNotEmpty &&
                           _phoneController.text.isNotEmpty) {
-                       bool isAdded = await addContactProvider.addContact(
+                        bool isAdded = await addContactProvider.addContact(
                             context,
                             _nameController.text,
                             _emailController.text,
                             int.parse(_phoneController.text),
                             _typeController.text);
 
-                        if(isAdded){
+                        if (isAdded) {
                           addContactProvider.getContacts();
                         }
                         Navigator.pop(context);
@@ -122,8 +122,9 @@ class _AddContactScreenState extends State<AddContactScreen> {
                       ),
                     ),
                     child: addContactProvider.isLoadingAdd
-                        ? Center(
-                            child: CircularProgressIndicator(),
+                        ? const Center(
+                            child:
+                                CircularProgressIndicator(color: Colors.white),
                           )
                         : const Text(
                             'Add contact',

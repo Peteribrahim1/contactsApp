@@ -4,7 +4,7 @@ import 'package:test_app/models/contacts_model.dart';
 import 'package:test_app/providers/contact_provider.dart';
 
 import '../../styles/styles.dart';
-import '../edit_contact_screen.dart';
+import '../screens/edit_contact_screen.dart';
 
 class ContactItem extends StatefulWidget {
   final ContactsModel contactValues;
@@ -58,7 +58,8 @@ class _ContactItemState extends State<ContactItem> {
                     builder: (context, contactProvider, child) {
                   return InkWell(
                       onTap: () {
-                        contactProvider.updateSelectedContact(widget.contactValues);
+                        contactProvider
+                            .updateSelectedContact(widget.contactValues);
                         showModalBottomSheet(
                           context: context,
                           builder: (context) => EditContactScreen(
@@ -72,16 +73,22 @@ class _ContactItemState extends State<ContactItem> {
                 Consumer<ContactProvider>(
                   builder: (context, deleteProvider, child) {
                     return InkWell(
-                        onTap: () {
-                          deleteProvider.updateSelectedContact(widget.contactValues);
-                          deleteProvider.deleteContact(
-                              deleteProvider.selectedContact!.id!);
-                        },
-                        child: deleteProvider.isLoadingDelete && deleteProvider.selectedContact == widget.contactValues
-                            ? const Center(
-                                child: CircularProgressIndicator(),
-                              )
-                            : Icon(Icons.delete_outline));
+                      onTap: () {
+                        deleteProvider
+                            .updateSelectedContact(widget.contactValues);
+                        deleteProvider
+                            .deleteContact(deleteProvider.selectedContact!.id!);
+                      },
+                      child: deleteProvider.isLoadingDelete &&
+                              deleteProvider.selectedContact ==
+                                  widget.contactValues
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.purple,
+                              ),
+                            )
+                          : Icon(Icons.delete_outline),
+                    );
                   },
                 ),
               ],

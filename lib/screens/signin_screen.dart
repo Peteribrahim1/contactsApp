@@ -8,6 +8,7 @@ import '../providers/contact_provider.dart';
 import '../styles/styles.dart';
 
 class SigninScreen extends StatefulWidget {
+  static const routeName = '/sign';
   const SigninScreen({Key? key}) : super(key: key);
 
   @override
@@ -71,15 +72,15 @@ class _SigninScreenState extends State<SigninScreen> {
                 ),
               ),
               //  SizedBox(height: 15,),
-              Consumer<ContactProvider>(builder: (context, inProvider, child) {
-                  return Text(
-                    inProvider.resMessage.isEmpty ? "" : inProvider.resMessage,
-                    style: TextStyle(
-                      color: Colors.red,
-                    ),
-                  );
-
-              }),
+              // Consumer<ContactProvider>(builder: (context, inProvider, child) {
+              //     return Text(
+              //       inProvider.resMessage.isEmpty ? "" : inProvider.resMessage,
+              //       style: TextStyle(
+              //         color: Colors.red,
+              //       ),
+              //     );
+              //
+              // }),
               const SizedBox(height: 15),
               const Text(
                 'Enter Password',
@@ -108,20 +109,20 @@ class _SigninScreenState extends State<SigninScreen> {
                   hintStyle: Styles.hintTextStyle,
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              Consumer<ContactProvider>(
-                  builder: (context, loginProvider, child) {
-                return Text(
-                  loginProvider.resMessage.isEmpty
-                      ? ""
-                      : loginProvider.resMessage,
-                  style: const TextStyle(
-                    color: Colors.red,
-                  ),
-                );
-              }),
+              // const SizedBox(
+              //   height: 15,
+              // ),
+              // Consumer<ContactProvider>(
+              //     builder: (context, loginProvider, child) {
+              //   return Text(
+              //     loginProvider.resMessage.isEmpty
+              //         ? ""
+              //         : loginProvider.resMessage,
+              //     style: const TextStyle(
+              //       color: Colors.red,
+              //     ),
+              //   );
+              // }),
               const SizedBox(height: 35),
               Center(
                 child: SizedBox(
